@@ -1,0 +1,198 @@
+fileFormatVersion: 2
+guid: 5e82eb61f0ead4b458e25223f18b820e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Cylinder001
+    100004: Line001
+    100006: Main
+    100008: Object001
+    100010: Object002
+    100012: Object003
+    100014: Object004
+    100016: Object005
+    100018: Tube001
+    100020: Tube002
+    100022: Tube003
+    100024: Tube004
+    100026: Tube005
+    100028: Tube006
+    100030: Tube007
+    100032: Tube008
+    100034: Tube009
+    400000: //RootNode
+    400002: Cylinder001
+    400004: Line001
+    400006: Main
+    400008: Object001
+    400010: Object002
+    400012: Object003
+    400014: Object004
+    400016: Object005
+    400018: Tube001
+    400020: Tube002
+    400022: Tube003
+    400024: Tube004
+    400026: Tube005
+    400028: Tube006
+    400030: Tube007
+    400032: Tube008
+    400034: Tube009
+    2100000: 'Material #8'
+    2100002: 'Material #2'
+    2100004: 'Material #3'
+    2100006: 'Material #4'
+    2100008: 'Material #5'
+    2100010: 'Material #6'
+    2100012: 'Material #7'
+    2300000: Cylinder001
+    2300002: Line001
+    2300004: Object001
+    2300006: Object002
+    2300008: Object003
+    2300010: Object004
+    2300012: Object005
+    2300014: Tube001
+    2300016: Tube002
+    2300018: Tube003
+    2300020: Tube004
+    2300022: Tube005
+    2300024: Tube006
+    2300026: Tube007
+    2300028: Tube008
+    2300030: Tube009
+    3300000: Cylinder001
+    3300002: Line001
+    3300004: Object001
+    3300006: Object002
+    3300008: Object003
+    3300010: Object004
+    3300012: Object005
+    3300014: Tube001
+    3300016: Tube002
+    3300018: Tube003
+    3300020: Tube004
+    3300022: Tube005
+    3300024: Tube006
+    3300026: Tube007
+    3300028: Tube008
+    3300030: Tube009
+    4300000: Line001
+    4300002: Tube005
+    4300004: Tube002
+    4300006: Tube003
+    4300008: Tube004
+    4300010: Object001
+    4300012: Tube006
+    4300014: Tube007
+    4300016: Tube008
+    4300018: Tube001
+    4300020: Cylinder001
+    4300022: Tube009
+    4300024: Object002
+    4300026: Object003
+    4300028: Object004
+    4300030: Object005
+    6400000: Cylinder001
+    6400002: Line001
+    6400004: Object001
+    6400006: Object002
+    6400008: Object003
+    6400010: Object004
+    6400012: Object005
+    6400014: Tube001
+    6400016: Tube002
+    6400018: Tube003
+    6400020: Tube004
+    6400022: Tube005
+    6400024: Tube006
+    6400026: Tube007
+    6400028: Tube008
+    6400030: Tube009
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
