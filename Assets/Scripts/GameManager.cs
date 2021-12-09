@@ -6,10 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField]
-    private Camera mainCamera;
-    [SerializeField]
-    private Camera ARCamera;
+    public Camera mainCamera;
+    public Camera ARCamera;
 
     private void Awake()
     {
