@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
+        SwitchCameras();
     }
 
     public void SwitchCameras()
