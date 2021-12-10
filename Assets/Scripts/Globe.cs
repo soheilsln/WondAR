@@ -9,10 +9,16 @@ public class Globe : MonoBehaviour
 
     private float startingTouchPosition;
 
+
     private void Update()
     {
         if (Input.touchCount > 0)
+        {
             RotateOnTouch();
+            OnClick();
+        }
+
+        CanvasLookAtCamera();
     }
 
     private void RotateOnTouch()
@@ -36,11 +42,30 @@ public class Globe : MonoBehaviour
             }
         }
 
+    }
+
+    private void CanvasLookAtCamera()
+    {
         foreach (Transform child in canvas)
         {
             child.transform.LookAt(GameManager.instance.ARCamera.transform);
         }
+    }
 
+    private void OnClick()
+    {
+        if(Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            Ray raycast = GameManager.instance.ARCamera.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit raycastHit;
+            if (Physics.Raycast(raycast, out raycastHit))
+            {
+                if (raycastHit.collider.CompareTag("Blip"))
+                {
+                    
+                }
+            }
+        }
     }
 
 }
