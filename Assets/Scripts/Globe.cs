@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class Globe : MonoBehaviour
     public Transform canvas;
 
     private float startingTouchPosition;
+
+    public static event Action<Collider> OnBlipsClicked;
 
 
     private void Update()
@@ -62,7 +65,8 @@ public class Globe : MonoBehaviour
             {
                 if (raycastHit.collider.CompareTag("Blip"))
                 {
-                    
+                    if (OnBlipsClicked != null)
+                        OnBlipsClicked(raycastHit.collider);
                 }
             }
         }
