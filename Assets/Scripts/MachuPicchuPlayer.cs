@@ -6,6 +6,7 @@ using UnityEngine;
 public class MachuPicchuPlayer : MonoBehaviour
 {
     private Animator animator;
+    private GameObject destination;
 
     public static event Action ReachedDestination;
 
@@ -30,24 +31,27 @@ public class MachuPicchuPlayer : MonoBehaviour
             collider.transform.position.z);
         Vector3 moveVector = location - transform.position;
         location = transform.position + 0.8f * moveVector; // moving close to the location
-        StartCoroutine(MoveToLocation(location, 3f));
+        destination = new GameObject();
+        destination.transform.position = location;
+        StartCoroutine(MoveToLocation(destination.transform, 3f));
     }
 
-    private IEnumerator MoveToLocation(Vector3 location, float duration)
+    private IEnumerator MoveToLocation(Transform location, float duration)
     {
         float time = 0f;
         Vector3 startPosition = transform.position;
 
-        transform.LookAt(location);
+        transform.LookAt(location.position);
         animator.SetFloat("Walk", 1f);
 
         while (time < duration)
         {
-            transform.position = Vector3.Lerp(startPosition, location, time / duration);
+            transform.position = Vector3.Lerp(startPosition, location.position, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
-        transform.position = location;
+        transform.position = location.position;
+        Destroy(destination);
 
         animator.SetFloat("Walk", 0f);
 

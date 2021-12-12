@@ -37,11 +37,11 @@ public class Globe : MonoBehaviour
         {
             if (startingTouchPosition > touch.position.x)
             {
-                transform.Rotate(Vector3.up, -rotattionSpeed * Time.deltaTime);
+                transform.Rotate(Vector3.up, rotattionSpeed * Time.deltaTime);
             }
             else if (startingTouchPosition < touch.position.x)
             {
-                transform.Rotate(Vector3.up, rotattionSpeed * Time.deltaTime);
+                transform.Rotate(Vector3.up, -rotattionSpeed * Time.deltaTime);
             }
         }
 
