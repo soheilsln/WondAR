@@ -21,7 +21,6 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         splashScreen.gameObject.SetActive(true);
-        currentTask = 1;
     }
 
     private void Start()
@@ -29,6 +28,7 @@ public class UIController : MonoBehaviour
         Globe.OnBlipsClicked += this.OnBlipsClicked;
         Cloud.OnCloudsDestroyed += this.StartSecondTask;
         Artefact.OnAllArtefactsFound += this.StartThirdTask;
+        Puzzle.PuzzleSolved += this.FinishWonder;
     }
 
     private void OnDestroy()
@@ -36,6 +36,7 @@ public class UIController : MonoBehaviour
         Globe.OnBlipsClicked -= this.OnBlipsClicked;
         Cloud.OnCloudsDestroyed -= this.StartSecondTask;
         Artefact.OnAllArtefactsFound -= this.StartThirdTask;
+        Puzzle.PuzzleSolved -= this.FinishWonder;
     }
 
     public void OnScanButtonClicked()
@@ -46,6 +47,7 @@ public class UIController : MonoBehaviour
 
     private void OnBlipsClicked(Collider collider)
     {
+        currentTask = 1;
         currentBlip = collider.transform.parent.gameObject;
         selectWonder.SetActive(true);
         Text wonderName = selectWonder.GetComponentInChildren<Text>();
@@ -69,7 +71,10 @@ public class UIController : MonoBehaviour
     public void OnStartTaskButtonClicked()
     {
         tasks.SetActive(false);
-        GameManager.instance.ChangeCurrentTarget(currentBlip.name + " Task " + currentTask);
+        if (currentTask == 0)
+            GameManager.instance.ChangeTargetToGlobe();
+        else
+            GameManager.instance.ChangeCurrentTarget(currentBlip.name + " Task " + currentTask);
     }
 
     public void StartSecondTask()
@@ -89,6 +94,16 @@ public class UIController : MonoBehaviour
         taskText.text = "Solve The Puzzle!";
         startTaskButton.gameObject.SetActive(false);
         scratch.gameObject.SetActive(true);
+        tasks.SetActive(true);
+    }
+
+    public void FinishWonder()
+    {
+        currentTask = 0;
+        taskNumber.text = "Tasks Finished";
+        taskText.text = "Continue To Next Level";
+        startTaskButton.gameObject.SetActive(true);
+        scratch.gameObject.SetActive(false);
         tasks.SetActive(true);
     }
 

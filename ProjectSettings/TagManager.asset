@@ -7,6 +7,7 @@ TagManager:
   - Blip
   - Cloud
   - WorldButton
+  - Puzzle
   layers:
   - Default
   - TransparentFX

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
-        SwitchCameras();
+        //SwitchCameras();
     }
 
     public void SwitchCameras()
@@ -57,5 +57,14 @@ public class GameManager : MonoBehaviour
                 target.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void ChangeTargetToGlobe()
+    {
+        foreach (ImageTargetBehaviour target in targets)
+        {
+            target.gameObject.SetActive(false);
+        }
+        globe.gameObject.SetActive(true);
     }
 }
