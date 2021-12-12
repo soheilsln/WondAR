@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     public GameObject splashScreen;
     public GameObject selectWonder;
     public GameObject tasks;
+    public Button startTaskButton;
 
     private GameObject currentBlip;
 
@@ -19,11 +20,13 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         Globe.OnBlipsClicked += this.OnBlipsClicked;
+        Cloud.OnCloudsDestroyed += this.StartSecondTask;
     }
 
     private void OnDestroy()
     {
         Globe.OnBlipsClicked -= this.OnBlipsClicked;
+        Cloud.OnCloudsDestroyed -= this.StartSecondTask;
     }
 
     public void OnScanButtonClicked()
@@ -42,8 +45,25 @@ public class UIController : MonoBehaviour
 
     public void OnSelectWonderButtonClicked()
     {
-        GameManager.instance.ChangeCurrentWonder(currentBlip.name);
         selectWonder.SetActive(false);
+        tasks.SetActive(true);
+    }
+
+    public void OnScratchClicked(Image scratch)
+    {
+        scratch.gameObject.SetActive(false);
+        startTaskButton.gameObject.SetActive(true);
+    }
+
+    public void OnStartTaskButtonClicked()
+    {
+        tasks.SetActive(false);
+        GameManager.instance.ChangeCurrentWonder(currentBlip.name);
+    }
+
+    public void StartSecondTask()
+    {
+        Debug.Log("Clouds Finished");
     }
 
 }
