@@ -26,9 +26,11 @@ public class MachuPicchuPlayer : MonoBehaviour
 
     private void GoToPosition(Collider collider)
     {
-        Vector3 position = new Vector3(collider.transform.position.x, transform.position.y,
+        Vector3 location = new Vector3(collider.transform.position.x, transform.position.y,
             collider.transform.position.z);
-        StartCoroutine(MoveToLocation(position, 3f));
+        Vector3 moveVector = location - transform.position;
+        location = transform.position + 0.8f * moveVector; // moving close to the location
+        StartCoroutine(MoveToLocation(location, 3f));
     }
 
     private IEnumerator MoveToLocation(Vector3 location, float duration)

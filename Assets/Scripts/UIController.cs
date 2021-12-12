@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     public Button startTaskButton;
     public Text taskNumber;
     public Text taskText;
+    public Image scratch;
 
     private GameObject currentBlip;
     private int currentTask = 1;
@@ -27,12 +28,14 @@ public class UIController : MonoBehaviour
     {
         Globe.OnBlipsClicked += this.OnBlipsClicked;
         Cloud.OnCloudsDestroyed += this.StartSecondTask;
+        Artefact.OnAllArtefactsFound += this.StartThirdTask;
     }
 
     private void OnDestroy()
     {
         Globe.OnBlipsClicked -= this.OnBlipsClicked;
         Cloud.OnCloudsDestroyed -= this.StartSecondTask;
+        Artefact.OnAllArtefactsFound -= this.StartThirdTask;
     }
 
     public void OnScanButtonClicked()
@@ -74,6 +77,8 @@ public class UIController : MonoBehaviour
         currentTask = 2;
         taskNumber.text = "Task 02";
         taskText.text = "Dig The Artefacts From The Ground!";
+        startTaskButton.gameObject.SetActive(false);
+        scratch.gameObject.SetActive(true);
         tasks.SetActive(true);
     }
 
@@ -82,6 +87,8 @@ public class UIController : MonoBehaviour
         currentTask = 3;
         taskNumber.text = "Task 03";
         taskText.text = "Solve The Puzzle!";
+        startTaskButton.gameObject.SetActive(false);
+        scratch.gameObject.SetActive(true);
         tasks.SetActive(true);
     }
 
