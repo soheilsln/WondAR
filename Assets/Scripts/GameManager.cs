@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Vuforia Targets")]
     public ImageTargetBehaviour globe;
-    public List<ImageTargetBehaviour> wonders;
+    public List<ImageTargetBehaviour> targets;
 
-    private string currentWonder;
+    private string currentTarget;
 
     private void Awake()
     {
@@ -41,20 +41,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeCurrentWonder(string wonderName)
+    public void ChangeCurrentTarget(string wonderName)
     {
-        currentWonder = wonderName;
+        currentTarget = wonderName;
         globe.gameObject.SetActive(false);
 
-        foreach (ImageTargetBehaviour wonder in wonders)
+        foreach (ImageTargetBehaviour target in targets)
         {
-            if (wonder.gameObject.name == currentWonder)
+            if (target.gameObject.name == currentTarget)
             {
-                wonder.gameObject.SetActive(true);
+                target.gameObject.SetActive(true);
             }
             else
             {
-                wonder.gameObject.SetActive(false);
+                target.gameObject.SetActive(false);
             }
         }
     }

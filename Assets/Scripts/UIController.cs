@@ -7,14 +7,20 @@ public class UIController : MonoBehaviour
 {
     public GameObject splashScreen;
     public GameObject selectWonder;
+
+    [Header("Tasks")]
     public GameObject tasks;
     public Button startTaskButton;
+    public Text taskNumber;
+    public Text taskText;
 
     private GameObject currentBlip;
+    private int currentTask = 1;
 
     private void Awake()
     {
         splashScreen.gameObject.SetActive(true);
+        currentTask = 1;
     }
 
     private void Start()
@@ -46,6 +52,8 @@ public class UIController : MonoBehaviour
     public void OnSelectWonderButtonClicked()
     {
         selectWonder.SetActive(false);
+        taskNumber.text = "Task 01";
+        taskText.text = "Swipe The Clouds To Reveal Machu Picchu!";
         tasks.SetActive(true);
     }
 
@@ -58,12 +66,23 @@ public class UIController : MonoBehaviour
     public void OnStartTaskButtonClicked()
     {
         tasks.SetActive(false);
-        GameManager.instance.ChangeCurrentWonder(currentBlip.name);
+        GameManager.instance.ChangeCurrentTarget(currentBlip.name + " Task " + currentTask);
     }
 
     public void StartSecondTask()
     {
-        Debug.Log("Clouds Finished");
+        currentTask = 2;
+        taskNumber.text = "Task 02";
+        taskText.text = "Dig The Artefacts From The Ground!";
+        tasks.SetActive(true);
+    }
+
+    public void StartThirdTask()
+    {
+        currentTask = 3;
+        taskNumber.text = "Task 03";
+        taskText.text = "Solve The Puzzle!";
+        tasks.SetActive(true);
     }
 
 }
