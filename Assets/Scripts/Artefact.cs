@@ -68,6 +68,7 @@ public class Artefact : MonoBehaviour
                     {
                         if (OnGoToClicked != null)
                             OnGoToClicked(raycastHit.collider);
+                        raycastHit.collider.gameObject.SetActive(false);
                     }
                     else if (raycastHit.collider.name == "DigButton")
                     {
@@ -104,7 +105,6 @@ public class Artefact : MonoBehaviour
     {
         if (currentArtefact != null)
         {
-            currentArtefact.GetChild(0).gameObject.SetActive(false);
             currentArtefact.GetChild(1).gameObject.SetActive(true);
             currentArtefactObject = currentArtefact.GetChild(2).gameObject;
             currentArtefactObject.GetComponent<MeshRenderer>().enabled = false;
