@@ -75,6 +75,7 @@ public class Artefact : MonoBehaviour
                         if (currentArtefactObject != null)
                         {
                             currentArtefactObject.GetComponentInChildren<ParticleSystem>().Play();
+                            raycastHit.collider.GetComponent<Animator>().SetTrigger("Dig");
                             currentDigNumber++;
                         }
 
