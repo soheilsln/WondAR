@@ -57,8 +57,8 @@ public class UIController : MonoBehaviour
     public void OnSelectWonderButtonClicked()
     {
         selectWonder.SetActive(false);
-        taskNumber.text = "Task 01";
-        taskText.text = "Swipe The Clouds To Reveal Machu Picchu!";
+        taskNumber.text = "Task 1";
+        taskText.text = "The clouds are covering Machu Picchu, slide them apart to reveal it!";
         tasks.SetActive(true);
     }
 
@@ -80,8 +80,8 @@ public class UIController : MonoBehaviour
     public void StartSecondTask()
     {
         currentTask = 2;
-        taskNumber.text = "Task 02";
-        taskText.text = "Dig The Artefacts From The Ground!";
+        taskNumber.text = "Task 2";
+        taskText.text = "There are some lost treasures, Hooray! Start digging using the pickaxe and collect them all.";
         startTaskButton.gameObject.SetActive(false);
         scratch.gameObject.SetActive(true);
         tasks.SetActive(true);
@@ -90,8 +90,8 @@ public class UIController : MonoBehaviour
     public void StartThirdTask()
     {
         currentTask = 3;
-        taskNumber.text = "Task 03";
-        taskText.text = "Solve The Puzzle!";
+        taskNumber.text = "Task 3";
+        taskText.text = "Now let us move onto the last and final task. Solve the Puzzle!";
         startTaskButton.gameObject.SetActive(false);
         scratch.gameObject.SetActive(true);
         tasks.SetActive(true);
@@ -101,7 +101,7 @@ public class UIController : MonoBehaviour
     {
         currentTask = 0;
         taskNumber.text = "Tasks Finished";
-        taskText.text = "Continue To Next Level";
+        taskText.text = "Congratulations! You have successfully completed Level 1. Flip the book to the first page.";
         startTaskButton.gameObject.SetActive(true);
         scratch.gameObject.SetActive(false);
         tasks.SetActive(true);
