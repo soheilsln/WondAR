@@ -33,24 +33,25 @@ public class MachuPicchuPlayer : MonoBehaviour
         location = transform.position + 0.7f * moveVector; // moving close to the location
         destination = new GameObject();
         destination.transform.position = location;
+        destination.transform.parent = this.transform.parent;
         StartCoroutine(MoveToLocation(destination.transform, 2f));
     }
 
     private IEnumerator MoveToLocation(Transform location, float duration)
     {
         float time = 0f;
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = transform.localPosition;
 
         transform.LookAt(location.position);
         animator.SetFloat("Walk", 1f);
 
         while (time < duration)
         {
-            transform.position = Vector3.Lerp(startPosition, location.position, time / duration);
+            transform.localPosition = Vector3.Lerp(startPosition, location.localPosition, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
-        transform.position = location.position;
+        transform.localPosition = location.localPosition;
         Destroy(destination);
 
         animator.SetFloat("Walk", 0f);
