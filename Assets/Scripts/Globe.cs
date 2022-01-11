@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Globe : MonoBehaviour
 {
@@ -12,6 +13,17 @@ public class Globe : MonoBehaviour
 
     public static event Action<Collider> OnBlipsClicked;
 
+    public Sprite[] blipsSprites;
+
+    private void Start()
+    {
+        UIController.OnTasksFinished += UpdateBlips;
+    }
+
+    private void OnDestroy()
+    {
+        UIController.OnTasksFinished -= UpdateBlips;
+    }
 
     private void Update()
     {
@@ -70,6 +82,11 @@ public class Globe : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void UpdateBlips(int level)
+    {
+        canvas.GetChild(level).GetComponent<Image>().sprite = blipsSprites[level];
     }
 
 }

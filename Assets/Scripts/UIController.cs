@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,11 @@ public class UIController : MonoBehaviour
     public Text taskText;
     public Image scratch;
 
+
     private GameObject currentBlip;
     private int currentTask = 1;
+
+    public static event Action<int> OnTasksFinished;
 
     private void Awake()
     {
@@ -70,11 +74,18 @@ public class UIController : MonoBehaviour
 
     public void OnStartTaskButtonClicked()
     {
+        int currentLevel = 1;
         tasks.SetActive(false);
         if (currentTask == 0)
+        {
             GameManager.instance.ChangeTargetToGlobe();
+            if (OnTasksFinished != null)
+                OnTasksFinished(currentLevel);
+        }
         else
+        {
             GameManager.instance.ChangeCurrentTarget(currentBlip.name + " Task " + currentTask);
+        }
     }
 
     public void StartSecondTask()
