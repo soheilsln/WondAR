@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public List<ImageTargetBehaviour> targets;
 
     private string currentTarget;
+    private int currentLevel;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
+        currentLevel = 0;
         //SwitchCameras();
     }
 
@@ -59,6 +61,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int ChangeCurrentLevel(string wonderName)
+    {
+        switch (wonderName)
+        {
+            case "MACHU PICCHU":
+                return 0;
+            case "THE COLOSSEUM":
+                return 1;
+            case "THE GREAT WALL OF CHINA":
+                return 2;
+            case "PYRAMID OF GIZA":
+                return 3;
+            case "CHICHEN ITZA":
+                return 4;
+            case "CHRIST THE REDEEMER":
+                return 5;
+            case "PETRA":
+                return 6;
+            case "TAJ MAHAL":
+                return 7;
+            default:
+                return 0;
+        }
+    }
+
     public void ChangeTargetToGlobe()
     {
         foreach (ImageTargetBehaviour target in targets)
@@ -67,4 +94,10 @@ public class GameManager : MonoBehaviour
         }
         globe.gameObject.SetActive(true);
     }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
+
 }

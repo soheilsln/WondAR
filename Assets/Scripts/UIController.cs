@@ -74,17 +74,17 @@ public class UIController : MonoBehaviour
 
     public void OnStartTaskButtonClicked()
     {
-        int currentLevel = 1;
         tasks.SetActive(false);
         if (currentTask == 0)
         {
             GameManager.instance.ChangeTargetToGlobe();
             if (OnTasksFinished != null)
-                OnTasksFinished(currentLevel);
+                OnTasksFinished(GameManager.instance.GetCurrentLevel() + 1);
         }
         else
         {
             GameManager.instance.ChangeCurrentTarget(currentBlip.name + " Task " + currentTask);
+            GameManager.instance.ChangeCurrentLevel(currentBlip.name);
         }
     }
 
