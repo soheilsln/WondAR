@@ -9,6 +9,9 @@ public class TheColosseumPlayer : MonoBehaviour
     private Animator animator;
     private GameObject destination;
     private Vector3 startLocalPosition;
+    private bool hitWall = false;
+    private bool isJumping = false;
+    private int currentWall = 0;
 
     public GameObject walls;
     public GameObject canvas;
@@ -54,6 +57,13 @@ public class TheColosseumPlayer : MonoBehaviour
                     {
                         StartRun();
                         raycastHit.collider.gameObject.SetActive(false);
+                        canvas.transform.GetChild(currentWall + 1).gameObject.SetActive(true);
+                    }
+                    else if (raycastHit.collider.name == "JumpButton")
+                    {
+                        isJumping = true;
+                        raycastHit.collider.gameObject.SetActive(false);
+                        animator.SetTrigger("Jump");
                     }
                 }
             }
@@ -62,19 +72,17 @@ public class TheColosseumPlayer : MonoBehaviour
 
     private void StartRun()
     {
-        GoToPosition(walls.transform.GetChild(0).GetComponent<Collider>());
+        GoToPosition(walls.transform.GetChild(currentWall).GetComponent<Collider>());
     }
 
     private void GoToPosition(Collider collider)
     {
         Vector3 location = new Vector3(collider.transform.position.x, transform.position.y,
             collider.transform.position.z);
-        Vector3 moveVector = location - transform.position;
-        location = transform.position + 0.7f * moveVector; // moving close to the location
         destination = new GameObject();
         destination.transform.position = location;
         destination.transform.parent = this.transform.parent;
-        StartCoroutine(MoveToLocation(destination.transform, 1f));
+        StartCoroutine(MoveToLocation(destination.transform, 1.5f));
     }
 
     private IEnumerator MoveToLocation(Transform location, float duration)
@@ -86,20 +94,36 @@ public class TheColosseumPlayer : MonoBehaviour
         animator.SetFloat("Walk", 1f);
         animator.SetFloat("Run", 1f);
 
-        while (time < duration)
+        while (time < duration && !hitWall)
         {
             transform.localPosition = Vector3.Lerp(startPosition, location.localPosition, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
-        transform.localPosition = location.localPosition;
+
         Destroy(destination);
+        if (!hitWall)
+        {
+            transform.localPosition = location.localPosition;
 
-        animator.SetFloat("Run", 0f);
-        animator.SetFloat("Walk", 0f);
+            animator.SetFloat("Run", 0f);
+            animator.SetFloat("Walk", 0f);
 
-        if (ReachedDestination != null)
-            ReachedDestination();
+            currentWall++;
+            if (currentWall < (canvas.transform.childCount - 1))
+            {
+                canvas.transform.GetChild(currentWall + 1).gameObject.SetActive(true);
+            }
+
+            if (currentWall < canvas.transform.childCount)
+                StartRun();
+
+            if (currentWall == canvas.transform.childCount)
+            {
+                if (ReachedDestination != null)
+                    ReachedDestination();
+            }
+        }
     }
 
     private void ButtonsLookAtCamera()
@@ -114,10 +138,29 @@ public class TheColosseumPlayer : MonoBehaviour
     {
         if (other.name.Contains("Wall"))
         {
-            animator.SetFloat("Run", 0f);
-            animator.SetFloat("Walk", 0f);
-            transform.localPosition = startLocalPosition;
-            canvas.transform.GetChild(0).gameObject.SetActive(true);
+            if (!isJumping)
+                StartCoroutine(ResetPlayer());
+            else
+                isJumping = false;
         }
     }
+
+    private IEnumerator ResetPlayer()
+    {
+        hitWall = true;
+        currentWall = 0;
+        animator.SetFloat("Run", 0f);
+        animator.SetFloat("Walk", 0f);
+        transform.localPosition = startLocalPosition;
+
+        canvas.transform.GetChild(0).gameObject.SetActive(true);
+        for (int i = 1; i < canvas.transform.childCount; i++)
+        {
+            canvas.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        yield return new WaitForEndOfFrame();
+        hitWall = false;
+    }
+
 }

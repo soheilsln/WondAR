@@ -33,6 +33,7 @@ public class UIController : MonoBehaviour
         Cloud.OnCloudsDestroyed += this.StartSecondTask;
         Artefact.OnAllArtefactsFound += this.StartThirdTask;
         Puzzle.PuzzleSolved += this.FinishWonder;
+        TheColosseumPlayer.ReachedDestination += this.StartSecondTask;
     }
 
     private void OnDestroy()
@@ -41,6 +42,7 @@ public class UIController : MonoBehaviour
         Cloud.OnCloudsDestroyed -= this.StartSecondTask;
         Artefact.OnAllArtefactsFound -= this.StartThirdTask;
         Puzzle.PuzzleSolved -= this.FinishWonder;
+        TheColosseumPlayer.ReachedDestination -= this.StartSecondTask;
     }
 
     public void OnScanButtonClicked()
