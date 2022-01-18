@@ -29,8 +29,7 @@ public class EnjoyMonument : MonoBehaviour
     public void OnCaptureButtonClicked()
     {
         ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/WondARCapture" + 
-            GameManager.instance.currentScreenShot + ".png");
-        GameManager.instance.currentScreenShot++;
+            System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss") + ".png");
         GameManager.instance.PlayAudioClip("ScreenShot");
     }
 
