@@ -35,6 +35,7 @@ public class UIController : MonoBehaviour
         Puzzle.PuzzleSolved += this.FinishWonder;
         TheColosseumPlayer.ReachedDestination += this.StartSecondTask;
         DoorPuzzle.DoorPuzzleSolved += this.StartThirdTask;
+        EnjoyMonument.ContinueClicked += BackToGlobe;
     }
 
     private void OnDestroy()
@@ -45,6 +46,7 @@ public class UIController : MonoBehaviour
         Puzzle.PuzzleSolved -= this.FinishWonder;
         TheColosseumPlayer.ReachedDestination -= this.StartSecondTask;
         DoorPuzzle.DoorPuzzleSolved -= this.StartThirdTask;
+        EnjoyMonument.ContinueClicked -= BackToGlobe;
     }
 
     public void OnScanButtonClicked()
@@ -166,10 +168,22 @@ public class UIController : MonoBehaviour
     {
         GameManager.instance.PlayAudioClip("Start Task");
 
-        currentTask = 0;
+        currentTask = 4;
         taskNumber.text = "Tasks Finished";
         taskText.text = "Congratulations! You have successfully completed Level " + 
-            (GameManager.instance.GetCurrentLevel() + 1)  + ". Flip the book to the first page.";
+            (GameManager.instance.GetCurrentLevel() + 1)  + ". You can now enjoy the monument.";
+        startTaskButton.gameObject.SetActive(true);
+        scratch.gameObject.SetActive(false);
+        tasks.SetActive(true);
+    }
+
+    public void BackToGlobe()
+    {
+        GameManager.instance.PlayAudioClip("Start Task");
+
+        currentTask = 0;
+        taskNumber.text = "Back To Globe";
+        taskText.text = "Flip to the first page.";
         startTaskButton.gameObject.SetActive(true);
         scratch.gameObject.SetActive(false);
         tasks.SetActive(true);

@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     private string currentTarget;
     private int currentLevel;
 
+    [HideInInspector]
+    public int currentScreenShot = 0;
+
     private void Awake()
     {
         if (instance == null)
