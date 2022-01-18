@@ -79,6 +79,7 @@ public class Globe : MonoBehaviour
                 {
                     if (OnBlipsClicked != null)
                         OnBlipsClicked(raycastHit.collider);
+                    GameManager.instance.PlayAudioClip("Map Click");
                 }
             }
         }

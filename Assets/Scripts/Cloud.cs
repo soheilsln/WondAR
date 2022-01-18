@@ -42,6 +42,8 @@ public class Cloud : MonoBehaviour
         }
         else if (Input.GetTouch(0).phase == TouchPhase.Moved && isDragBegin)
         {
+            GameManager.instance.PlayAudioClip("Cloud Swipe");
+
             if (startingTouchPosition > touch.position.x)
             {
                 currentCloud.GetComponent<Rigidbody>().velocity = new Vector3(-dragSpeed, 0, 0);

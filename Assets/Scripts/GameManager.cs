@@ -11,9 +11,13 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public Camera ARCamera;
 
-    [Header("Vuforia Targets")]
-    public ImageTargetBehaviour globe;
-    public List<ImageTargetBehaviour> targets;
+    [Header("Audios")]
+    public List<AudioClip> audios;
+
+    private ImageTargetBehaviour globe;
+    private List<ImageTargetBehaviour> targets;
+    private AudioSource audioSourse;
+    private Dictionary<string, AudioClip> audiosDic;
 
     private string currentTarget;
     private int currentLevel;
@@ -28,11 +32,19 @@ public class GameManager : MonoBehaviour
         currentLevel = 0;
 
         globe = ARCamera.transform.GetChild(0).GetComponent<ImageTargetBehaviour>();
+        targets = new List<ImageTargetBehaviour>();
         foreach(Transform target in ARCamera.transform)
         {
             targets.Add(target.GetComponent<ImageTargetBehaviour>());
         }
         targets.Remove(targets[0]);
+
+        audioSourse = GetComponent<AudioSource>();
+        audiosDic = new Dictionary<string, AudioClip>();
+        foreach(AudioClip audio in audios)
+        {
+            audiosDic.Add(audio.name, audio);
+        }
     }
 
     public void SwitchCameras()
@@ -104,6 +116,12 @@ public class GameManager : MonoBehaviour
     public int GetCurrentLevel()
     {
         return currentLevel;
+    }
+
+    public void PlayAudioClip(string audioName)
+    {
+        audioSourse.clip = audiosDic[audioName];
+        audioSourse.Play();
     }
 
 }

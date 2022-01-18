@@ -66,12 +66,16 @@ public class Artefact : MonoBehaviour
                 {
                     if (raycastHit.collider.name == "GoToButton")
                     {
+                        GameManager.instance.PlayAudioClip("Arrow Digging");
+
                         if (OnGoToClicked != null)
                             OnGoToClicked(raycastHit.collider);
                         raycastHit.collider.gameObject.SetActive(false);
                     }
                     else if (raycastHit.collider.name == "DigButton")
                     {
+                        GameManager.instance.PlayAudioClip("Digging");
+
                         if (currentArtefactObject != null)
                         {
                             currentArtefactObject.GetComponentInChildren<ParticleSystem>().Play();
@@ -81,6 +85,8 @@ public class Artefact : MonoBehaviour
 
                         if (currentDigNumber == totalDigNumber)
                         {
+                            GameManager.instance.PlayAudioClip("Gem Collect");
+
                             currentArtefact.GetChild(1).gameObject.SetActive(false);
                             currentArtefactObject.GetComponent<MeshRenderer>().enabled = true;
                             currentDigNumber = 0;

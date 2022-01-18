@@ -73,6 +73,7 @@ public class Puzzle : MonoBehaviour
         {
             if (Vector3.Distance(location.position, currentPiece.transform.position) < 60f)
             {
+                GameManager.instance.PlayAudioClip("Puzzle Correct");
                 currentPiece.transform.position = location.position;
                 return;
             }

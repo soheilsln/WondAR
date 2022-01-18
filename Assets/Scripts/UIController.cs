@@ -64,6 +64,8 @@ public class UIController : MonoBehaviour
 
     public void OnSelectWonderButtonClicked()
     {
+        GameManager.instance.PlayAudioClip("Start Task");
+
         selectWonder.SetActive(false);
         taskNumber.text = "Task 1";
         taskText.text = "The clouds are covering Machu Picchu, slide them apart to reveal it!";
@@ -78,6 +80,8 @@ public class UIController : MonoBehaviour
 
     public void OnStartTaskButtonClicked()
     {
+        GameManager.instance.PlayAudioClip("Arrow Task");
+
         tasks.SetActive(false);
         if (currentTask == 0)
         {
@@ -94,6 +98,8 @@ public class UIController : MonoBehaviour
 
     public void StartSecondTask()
     {
+        GameManager.instance.PlayAudioClip("Start Task");
+
         currentTask = 2;
         taskNumber.text = "Task 2";
         taskText.text = "There are some lost treasures, Hooray! Start digging using the pickaxe and collect them all.";
@@ -104,6 +110,8 @@ public class UIController : MonoBehaviour
 
     public void StartThirdTask()
     {
+        GameManager.instance.PlayAudioClip("Start Task");
+
         currentTask = 3;
         taskNumber.text = "Task 3";
         taskText.text = "Now let us move onto the last and final task. Solve the Puzzle!";
@@ -114,6 +122,8 @@ public class UIController : MonoBehaviour
 
     public void FinishWonder()
     {
+        GameManager.instance.PlayAudioClip("Start Task");
+
         currentTask = 0;
         taskNumber.text = "Tasks Finished";
         taskText.text = "Congratulations! You have successfully completed Level 1. Flip the book to the first page.";
