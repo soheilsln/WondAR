@@ -28,7 +28,8 @@ public class EnjoyMonument : MonoBehaviour
 
     public void OnCaptureButtonClicked()
     {
-        ScreenCapture.CaptureScreenshot("WondARCapture" + GameManager.instance.currentScreenShot + ".png");
+        ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/WondARCapture" + 
+            GameManager.instance.currentScreenShot + ".png");
         GameManager.instance.currentScreenShot++;
         GameManager.instance.PlayAudioClip("ScreenShot");
     }
