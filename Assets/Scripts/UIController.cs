@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
 {
     public GameObject splashScreen;
     public GameObject selectWonder;
+    public GameObject FlipTheBook;
 
     [Header("Tasks")]
     public GameObject tasks;
@@ -16,6 +17,9 @@ public class UIController : MonoBehaviour
     public Text taskText;
     public Image scratch;
 
+    [Header("Task Information")]
+    public GameObject taskInformation;
+    public Text taskInformationText;
 
     private GameObject currentBlip;
     private int currentTask = 1;
@@ -30,22 +34,22 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         Globe.OnBlipsClicked += this.OnBlipsClicked;
-        Cloud.OnCloudsDestroyed += this.StartSecondTask;
-        Artefact.OnAllArtefactsFound += this.StartThirdTask;
-        Puzzle.PuzzleSolved += this.FinishWonder;
-        TheColosseumPlayer.ReachedDestination += this.StartSecondTask;
-        DoorPuzzle.DoorPuzzleSolved += this.StartThirdTask;
+        Cloud.OnCloudsDestroyed += this.ShowTaskInformation;
+        Artefact.OnAllArtefactsFound += this.ShowTaskInformation;
+        Puzzle.PuzzleSolved += this.ShowTaskInformation;
+        TheColosseumPlayer.ReachedDestination += this.ShowTaskInformation;
+        DoorPuzzle.DoorPuzzleSolved += this.ShowTaskInformation;
         EnjoyMonument.ContinueClicked += BackToGlobe;
     }
 
     private void OnDestroy()
     {
         Globe.OnBlipsClicked -= this.OnBlipsClicked;
-        Cloud.OnCloudsDestroyed -= this.StartSecondTask;
-        Artefact.OnAllArtefactsFound -= this.StartThirdTask;
-        Puzzle.PuzzleSolved -= this.FinishWonder;
-        TheColosseumPlayer.ReachedDestination -= this.StartSecondTask;
-        DoorPuzzle.DoorPuzzleSolved -= this.StartThirdTask;
+        Cloud.OnCloudsDestroyed -= this.ShowTaskInformation;
+        Artefact.OnAllArtefactsFound -= this.ShowTaskInformation;
+        Puzzle.PuzzleSolved -= this.ShowTaskInformation;
+        TheColosseumPlayer.ReachedDestination -= this.ShowTaskInformation;
+        DoorPuzzle.DoorPuzzleSolved -= this.ShowTaskInformation;
         EnjoyMonument.ContinueClicked -= BackToGlobe;
     }
 
@@ -57,9 +61,10 @@ public class UIController : MonoBehaviour
 
     private void OnBlipsClicked(Collider collider)
     {
-        currentTask = 1;
         currentBlip = collider.transform.parent.gameObject;
         GameManager.instance.ChangeCurrentLevel(currentBlip.name);
+
+        currentTask = 1;
         selectWonder.SetActive(true);
         Text wonderName = selectWonder.GetComponentInChildren<Text>();
         wonderName.text = currentBlip.name;
@@ -71,7 +76,7 @@ public class UIController : MonoBehaviour
 
         selectWonder.SetActive(false);
 
-        switch(GameManager.instance.GetCurrentLevel())
+        switch (GameManager.instance.GetCurrentLevel())
         {
             case 0:
                 taskNumber.text = "Task 1";
@@ -79,13 +84,14 @@ public class UIController : MonoBehaviour
                 break;
             case 1:
                 taskNumber.text = "Task 1";
-                taskText.text = "Help the bull to jump from obstacles and reach its destination.";
+                taskText.text = "Help the bull to jump the hurdles and reach its destination.";
                 break;
             default:
+                FinishWonder();
                 break;
         }
 
-        
+
         tasks.SetActive(true);
     }
 
@@ -97,6 +103,7 @@ public class UIController : MonoBehaviour
 
     public void OnStartTaskButtonClicked()
     {
+        StartCoroutine(ShowFlipTheBook());
         GameManager.instance.PlayAudioClip("Arrow Task");
 
         tasks.SetActive(false);
@@ -113,13 +120,107 @@ public class UIController : MonoBehaviour
         }
     }
 
+    public void ShowTaskInformation()
+    {
+        taskInformation.SetActive(true);
+
+        switch (GameManager.instance.GetCurrentLevel())
+        {
+            case 0:
+                if (currentTask == 1)
+                    taskInformationText.text = "1.\tMachu Picchu is located deep in the beautiful cloud forest The cloud " +
+                        "forest has a large variety of plants, insects, animals, as well as over 300 species of orchids.\n" +
+                        "2.\tBuilt under the Inca Empire, it was a beautiful city that was abandoned hundred years later.";
+                else if (currentTask == 2)
+                    taskInformationText.text = "1.\tMachu Picchu was hidden and undiscovered for centuries, making it one of" +
+                        " the best-preserved Inca settlements and an archaeological treasure.\n2.\tA lot of hidden treasures" +
+                        " have been dug up from the sites especially ceramic vessels, silver statues, jewellery, and human" +
+                        " bones.";
+                else if (currentTask == 3)
+                    taskInformationText.text = "1.\tIn the Quechua Peru language, “Machu Picchu” means “Old Peak” or “Old" +
+                        " Mountain.”\n2.\tThe city is almost 8000 feet above sea level.\n3.\tMachu Picchu is made up of more" +
+                        " than 150 buildings ranging from baths and houses to temples and sanctuaries.";
+                break;
+            case 1:
+                if (currentTask == 1)
+                    taskInformationText.text = "Task 1 Information";
+                else if (currentTask == 2)
+                    taskInformationText.text = "Task 2 Information";
+                else if (currentTask == 3)
+                    taskInformationText.text = "Task 3 Information";
+                break;
+            case 2:
+                if (currentTask == 1)
+                    taskInformationText.text = "Task 1 Information";
+                else if (currentTask == 2)
+                    taskInformationText.text = "Task 2 Information";
+                else if (currentTask == 3)
+                    taskInformationText.text = "Task 3 Information";
+                break;
+            case 3:
+                if (currentTask == 1)
+                    taskInformationText.text = "Task 1 Information";
+                else if (currentTask == 2)
+                    taskInformationText.text = "Task 2 Information";
+                else if (currentTask == 3)
+                    taskInformationText.text = "Task 3 Information";
+                break;
+            case 4:
+                if (currentTask == 1)
+                    taskInformationText.text = "Task 1 Information";
+                else if (currentTask == 2)
+                    taskInformationText.text = "Task 2 Information";
+                else if (currentTask == 3)
+                    taskInformationText.text = "Task 3 Information";
+                break;
+            case 5:
+                if (currentTask == 1)
+                    taskInformationText.text = "Task 1 Information";
+                else if (currentTask == 2)
+                    taskInformationText.text = "Task 2 Information";
+                else if (currentTask == 3)
+                    taskInformationText.text = "Task 3 Information";
+                break;
+            case 6:
+                if (currentTask == 1)
+                    taskInformationText.text = "Task 1 Information";
+                else if (currentTask == 2)
+                    taskInformationText.text = "Task 2 Information";
+                else if (currentTask == 3)
+                    taskInformationText.text = "Task 3 Information";
+                break;
+            case 7:
+                if (currentTask == 1)
+                    taskInformationText.text = "Task 1 Information";
+                else if (currentTask == 2)
+                    taskInformationText.text = "Task 2 Information";
+                else if (currentTask == 3)
+                    taskInformationText.text = "Task 3 Information";
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void OnContinueButtonTaskInformationClicked()
+    {
+        taskInformation.SetActive(false);
+
+        if (currentTask == 1)
+            StartSecondTask();
+        else if (currentTask == 2)
+            StartThirdTask();
+        else if (currentTask == 3)
+            FinishWonder();
+    }
+
     public void StartSecondTask()
     {
         GameManager.instance.PlayAudioClip("Start Task");
 
         currentTask = 2;
 
-        switch(GameManager.instance.GetCurrentLevel())
+        switch (GameManager.instance.GetCurrentLevel())
         {
             case 0:
                 taskNumber.text = "Task 2";
@@ -133,7 +234,7 @@ public class UIController : MonoBehaviour
                 break;
         }
 
-        
+
         startTaskButton.gameObject.SetActive(false);
         scratch.gameObject.SetActive(true);
         tasks.SetActive(true);
@@ -170,8 +271,8 @@ public class UIController : MonoBehaviour
 
         currentTask = 4;
         taskNumber.text = "Tasks Finished";
-        taskText.text = "Congratulations! You have successfully completed Level " + 
-            (GameManager.instance.GetCurrentLevel() + 1)  + ". You can now enjoy the monument.";
+        taskText.text = "Congratulations! You have successfully completed Level " +
+            (GameManager.instance.GetCurrentLevel() + 1) + ". You can now enjoy the monument.";
         startTaskButton.gameObject.SetActive(true);
         scratch.gameObject.SetActive(false);
         tasks.SetActive(true);
@@ -189,4 +290,10 @@ public class UIController : MonoBehaviour
         tasks.SetActive(true);
     }
 
+    private IEnumerator ShowFlipTheBook()
+    {
+        FlipTheBook.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        FlipTheBook.SetActive(false);
+    }
 }

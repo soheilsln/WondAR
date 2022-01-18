@@ -87,8 +87,11 @@ public class Globe : MonoBehaviour
 
     private void UpdateBlips(int level)
     {
-        canvas.GetChild(level).GetComponent<Image>().sprite = blipsSprites[level];
-        canvas.GetChild(level).GetChild(0).gameObject.SetActive(true);
+        if (level < blipsSprites.Length)
+        {
+            canvas.GetChild(level).GetComponent<Image>().sprite = blipsSprites[level];
+            canvas.GetChild(level).GetChild(0).gameObject.SetActive(true);
+        }
     }
 
 }

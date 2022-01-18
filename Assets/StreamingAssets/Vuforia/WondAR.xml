@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
-    <ImageTarget name="Task3" size="1000.000000 707.000000" />
-    <ImageTarget name="Task2" size="1000.000000 707.000000" />
-    <ImageTarget name="Task1" size="1000.000000 707.000000" />
+    <ImageTarget name="Level2Task4" size="1000.000000 707.000000" />
+    <ImageTarget name="Level2Task3" size="1000.000000 707.000000" />
+    <ImageTarget name="Level2Task2" size="1000.000000 707.000000" />
+    <ImageTarget name="Level2Task1" size="1000.000000 707.000000" />
+    <ImageTarget name="Level1Task4" size="1000.000000 707.000000" />
+    <ImageTarget name="Level1Task3" size="1000.000000 707.000000" />
+    <ImageTarget name="Level1Task2" size="1000.000000 707.000000" />
+    <ImageTarget name="Level1Task1" size="1000.000000 707.000000" />
     <ImageTarget name="Globe" size="1000.000000 707.000000" />
   </Tracking>
 </QCARConfig>
