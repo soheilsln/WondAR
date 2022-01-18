@@ -31,14 +31,14 @@ public class DoorPuzzle : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            OnClick();
+            StartCoroutine(OnClick());
         }
 
         ButtonsLookAtCamera();
 
     }
 
-    private void OnClick()
+    private IEnumerator OnClick()
     {
         if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -54,10 +54,11 @@ public class DoorPuzzle : MonoBehaviour
                         {
                             if (!isOpened[i] && raycastHit.transform.name.EndsWith((i + 1).ToString()))
                             {
-                                doors[i].GetChild(1).GetComponent<Animator>().SetTrigger("OpenClose");
+                                doors[i].GetChild(1).GetComponent<Animator>().SetTrigger("Open");
+                                yield return new WaitForSeconds(1f);
                                 doors[i].GetChild(2).gameObject.SetActive(true);
                                 isOpened[i] = true;
-                                CheckAnswer(i);
+                                StartCoroutine(CheckAnswer(i));
                             }
                         }
                     }
@@ -75,13 +76,21 @@ public class DoorPuzzle : MonoBehaviour
     {
         foreach (Transform door in doors)
         {
-            door.GetChild(1).GetComponent<Animator>().SetTrigger("OpenClose");
+            door.GetChild(1).GetComponent<Animator>().SetTrigger("Open");
+        }
+        yield return new WaitForSeconds(1f);
+        foreach (Transform door in doors)
+        {
             door.GetChild(2).gameObject.SetActive(true);
         }
         yield return new WaitForSeconds(5f);
         foreach (Transform door in doors)
         {
-            door.GetChild(1).GetComponent<Animator>().SetTrigger("OpenClose");
+            door.GetChild(1).GetComponent<Animator>().SetTrigger("Close");
+        }
+        yield return new WaitForSeconds(0.4f);
+        foreach (Transform door in doors)
+        {
             door.GetChild(2).gameObject.SetActive(false);
         }
         showedAnswers = true;
@@ -92,7 +101,7 @@ public class DoorPuzzle : MonoBehaviour
         transform.GetChild(0).LookAt(GameManager.instance.ARCamera.transform);
     }
 
-    private void CheckAnswer(int doorNumber)
+    private IEnumerator CheckAnswer(int doorNumber)
     {
         int openedCount = 0;
         for (int i = 0; i < isOpened.Length; i++)
@@ -107,6 +116,7 @@ public class DoorPuzzle : MonoBehaviour
             {
                 isSolved[doorNumber] = true;
                 isSolved[answers[doorNumber]] = true;
+                yield return new WaitForSeconds(0.7f);
                 doors[doorNumber].GetChild(0).GetComponent<Image>().color = Color.green;
                 doors[answers[doorNumber]].GetChild(0).GetComponent<Image>().color = Color.green;
             }
@@ -114,9 +124,11 @@ public class DoorPuzzle : MonoBehaviour
             {
                 for (int i = 0; i < isOpened.Length; i++)
                 {
-                    if(!isSolved[i] && isOpened[i])
+                    if (!isSolved[i] && isOpened[i])
                     {
-                        doors[i].GetChild(1).GetComponent<Animator>().SetTrigger("OpenClose");
+                        yield return new WaitForSeconds(1f);
+                        doors[i].GetChild(1).GetComponent<Animator>().SetTrigger("Close");
+                        yield return new WaitForSeconds(0.4f);
                         doors[i].GetChild(2).gameObject.SetActive(false);
                         isOpened[i] = false;
                     }
