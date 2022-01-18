@@ -143,59 +143,18 @@ public class UIController : MonoBehaviour
                 break;
             case 1:
                 if (currentTask == 1)
-                    taskInformationText.text = "Task 1 Information";
+                    taskInformationText.text = "1.\tThe Colosseum is in Rome, Italy and is an ancient amphitheatre that was" +
+                        " built by the great emperor Titus Vespasian.\n2.\tAn amphitheatre is an open circular or oval " +
+                        "building with a space in the centre surrounded by a lot of seats for spectators, to watch " +
+                        "sporting events.";
                 else if (currentTask == 2)
-                    taskInformationText.text = "Task 2 Information";
+                    taskInformationText.text = "1.\tSome people were given special seating including senators. To become a" +
+                        " Roman Senate, a person had to meet high criteria; this included being rich, more than 30 years" +
+                        " of age and having served in a very high position of authority.";
                 else if (currentTask == 3)
-                    taskInformationText.text = "Task 3 Information";
-                break;
-            case 2:
-                if (currentTask == 1)
-                    taskInformationText.text = "Task 1 Information";
-                else if (currentTask == 2)
-                    taskInformationText.text = "Task 2 Information";
-                else if (currentTask == 3)
-                    taskInformationText.text = "Task 3 Information";
-                break;
-            case 3:
-                if (currentTask == 1)
-                    taskInformationText.text = "Task 1 Information";
-                else if (currentTask == 2)
-                    taskInformationText.text = "Task 2 Information";
-                else if (currentTask == 3)
-                    taskInformationText.text = "Task 3 Information";
-                break;
-            case 4:
-                if (currentTask == 1)
-                    taskInformationText.text = "Task 1 Information";
-                else if (currentTask == 2)
-                    taskInformationText.text = "Task 2 Information";
-                else if (currentTask == 3)
-                    taskInformationText.text = "Task 3 Information";
-                break;
-            case 5:
-                if (currentTask == 1)
-                    taskInformationText.text = "Task 1 Information";
-                else if (currentTask == 2)
-                    taskInformationText.text = "Task 2 Information";
-                else if (currentTask == 3)
-                    taskInformationText.text = "Task 3 Information";
-                break;
-            case 6:
-                if (currentTask == 1)
-                    taskInformationText.text = "Task 1 Information";
-                else if (currentTask == 2)
-                    taskInformationText.text = "Task 2 Information";
-                else if (currentTask == 3)
-                    taskInformationText.text = "Task 3 Information";
-                break;
-            case 7:
-                if (currentTask == 1)
-                    taskInformationText.text = "Task 1 Information";
-                else if (currentTask == 2)
-                    taskInformationText.text = "Task 2 Information";
-                else if (currentTask == 3)
-                    taskInformationText.text = "Task 3 Information";
+                    taskInformationText.text = "1.\tMany types of events were held in the Colosseum. In the early years, " +
+                        "Romans filled the amphitheatre with water and staged sea battles and re-enactments of victorious " +
+                        "sea battles. Wild animals were featured in both gladiatorial matches and in staged hunts.";
                 break;
             default:
                 break;
@@ -228,7 +187,8 @@ public class UIController : MonoBehaviour
                 break;
             case 1:
                 taskNumber.text = "Task 2";
-                taskText.text = "Find your favourite weapon by opening the doors and solve the puzzle.";
+                taskText.text = "Let us see how well you memorize. Find your favourite weapon by opening the doors and solve" +
+                    " the puzzle.";
                 break;
             default:
                 break;
@@ -254,7 +214,7 @@ public class UIController : MonoBehaviour
                 break;
             case 1:
                 taskNumber.text = "Task 3";
-                taskText.text = "Now let us move onto the last and final task. Solve the Puzzle!";
+                taskText.text = "Get ready for the battle. Let us move onto the last and final task. Suit up the knight!";
                 break;
             default:
                 break;
