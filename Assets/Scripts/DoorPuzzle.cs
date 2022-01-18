@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class DoorPuzzle : MonoBehaviour
     private bool[] isSolved;
     private List<Transform> doors;
     private int[] answers;
+
+    public static event Action DoorPuzzleSolved;
 
     private void Start()
     {
@@ -119,6 +122,7 @@ public class DoorPuzzle : MonoBehaviour
                 yield return new WaitForSeconds(0.7f);
                 doors[doorNumber].GetChild(0).GetComponent<Image>().color = Color.green;
                 doors[answers[doorNumber]].GetChild(0).GetComponent<Image>().color = Color.green;
+                SolveCheck();
             }
             else
             {
@@ -134,6 +138,22 @@ public class DoorPuzzle : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void SolveCheck()
+    {
+        int solvedCount = 0;
+        for (int i = 0; i < isSolved.Length; i++)
+        {
+            if (isSolved[i])
+                solvedCount++;
+        }
+        
+        if(solvedCount == isSolved.Length)
+        {
+            if (DoorPuzzleSolved != null)
+                DoorPuzzleSolved();
         }
     }
 

@@ -34,6 +34,7 @@ public class UIController : MonoBehaviour
         Artefact.OnAllArtefactsFound += this.StartThirdTask;
         Puzzle.PuzzleSolved += this.FinishWonder;
         TheColosseumPlayer.ReachedDestination += this.StartSecondTask;
+        DoorPuzzle.DoorPuzzleSolved += this.StartThirdTask;
     }
 
     private void OnDestroy()
@@ -43,6 +44,7 @@ public class UIController : MonoBehaviour
         Artefact.OnAllArtefactsFound -= this.StartThirdTask;
         Puzzle.PuzzleSolved -= this.FinishWonder;
         TheColosseumPlayer.ReachedDestination -= this.StartSecondTask;
+        DoorPuzzle.DoorPuzzleSolved -= this.StartThirdTask;
     }
 
     public void OnScanButtonClicked()

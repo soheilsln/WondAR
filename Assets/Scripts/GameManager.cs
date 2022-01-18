@@ -26,7 +26,13 @@ public class GameManager : MonoBehaviour
         }
 
         currentLevel = 0;
-        //SwitchCameras();
+
+        globe = ARCamera.transform.GetChild(0).GetComponent<ImageTargetBehaviour>();
+        foreach(Transform target in ARCamera.transform)
+        {
+            targets.Add(target.GetComponent<ImageTargetBehaviour>());
+        }
+        targets.Remove(targets[0]);
     }
 
     public void SwitchCameras()
