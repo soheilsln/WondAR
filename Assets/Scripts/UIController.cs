@@ -16,10 +16,15 @@ public class UIController : MonoBehaviour
     public Text taskNumber;
     public Text taskText;
     public Image scratch;
+    public Image character;
 
     [Header("Task Information")]
     public GameObject taskInformation;
     public Text taskInformationText;
+    public Image characterInformation;
+
+    [Header("Characters")]
+    public Sprite[] characters;
 
     private GameObject currentBlip;
     private int currentTask = 1;
@@ -68,6 +73,9 @@ public class UIController : MonoBehaviour
         selectWonder.SetActive(true);
         Text wonderName = selectWonder.GetComponentInChildren<Text>();
         wonderName.text = currentBlip.name;
+
+        character.sprite = characters[GameManager.instance.GetCurrentLevel()];
+        characterInformation.sprite = characters[GameManager.instance.GetCurrentLevel()];
     }
 
     public void OnSelectWonderButtonClicked()
