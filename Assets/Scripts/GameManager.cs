@@ -79,28 +79,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int ChangeCurrentLevel(string wonderName)
+    public void ChangeCurrentLevel(string wonderName)
     {
         switch (wonderName)
         {
             case "MACHU PICCHU":
-                return 0;
+                currentLevel = 0;
+                break;
             case "THE COLOSSEUM":
-                return 1;
+                currentLevel = 1;
+                break;
             case "THE GREAT WALL OF CHINA":
-                return 2;
+                currentLevel = 2;
+                break;
             case "PYRAMID OF GIZA":
-                return 3;
+                currentLevel = 3;
+                break;
             case "CHICHEN ITZA":
-                return 4;
+                currentLevel = 4;
+                break;
             case "CHRIST THE REDEEMER":
-                return 5;
+                currentLevel = 5;
+                break;
             case "PETRA":
-                return 6;
+                currentLevel = 6;
+                break;
             case "TAJ MAHAL":
-                return 7;
+                currentLevel = 7;
+                break;
             default:
-                return 0;
+                break;
         }
     }
 

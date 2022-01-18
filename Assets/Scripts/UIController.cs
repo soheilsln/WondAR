@@ -57,6 +57,7 @@ public class UIController : MonoBehaviour
     {
         currentTask = 1;
         currentBlip = collider.transform.parent.gameObject;
+        GameManager.instance.ChangeCurrentLevel(currentBlip.name);
         selectWonder.SetActive(true);
         Text wonderName = selectWonder.GetComponentInChildren<Text>();
         wonderName.text = currentBlip.name;
@@ -67,8 +68,22 @@ public class UIController : MonoBehaviour
         GameManager.instance.PlayAudioClip("Start Task");
 
         selectWonder.SetActive(false);
-        taskNumber.text = "Task 1";
-        taskText.text = "The clouds are covering Machu Picchu, slide them apart to reveal it!";
+
+        switch(GameManager.instance.GetCurrentLevel())
+        {
+            case 0:
+                taskNumber.text = "Task 1";
+                taskText.text = "The clouds are covering Machu Picchu, slide them apart to reveal it!";
+                break;
+            case 1:
+                taskNumber.text = "Task 1";
+                taskText.text = "Help the bull to jump from obstacles and reach its destination.";
+                break;
+            default:
+                break;
+        }
+
+        
         tasks.SetActive(true);
     }
 
@@ -101,8 +116,22 @@ public class UIController : MonoBehaviour
         GameManager.instance.PlayAudioClip("Start Task");
 
         currentTask = 2;
-        taskNumber.text = "Task 2";
-        taskText.text = "There are some lost treasures, Hooray! Start digging using the pickaxe and collect them all.";
+
+        switch(GameManager.instance.GetCurrentLevel())
+        {
+            case 0:
+                taskNumber.text = "Task 2";
+                taskText.text = "There are some lost treasures, Hooray! Start digging using the pickaxe and collect them all.";
+                break;
+            case 1:
+                taskNumber.text = "Task 2";
+                taskText.text = "Find your favourite weapon by opening the doors and solve the puzzle.";
+                break;
+            default:
+                break;
+        }
+
+        
         startTaskButton.gameObject.SetActive(false);
         scratch.gameObject.SetActive(true);
         tasks.SetActive(true);
@@ -113,8 +142,21 @@ public class UIController : MonoBehaviour
         GameManager.instance.PlayAudioClip("Start Task");
 
         currentTask = 3;
-        taskNumber.text = "Task 3";
-        taskText.text = "Now let us move onto the last and final task. Solve the Puzzle!";
+
+        switch (GameManager.instance.GetCurrentLevel())
+        {
+            case 0:
+                taskNumber.text = "Task 3";
+                taskText.text = "Now let us move onto the last and final task. Solve the Puzzle!";
+                break;
+            case 1:
+                taskNumber.text = "Task 3";
+                taskText.text = "Now let us move onto the last and final task. Solve the Puzzle!";
+                break;
+            default:
+                break;
+        }
+
         startTaskButton.gameObject.SetActive(false);
         scratch.gameObject.SetActive(true);
         tasks.SetActive(true);
@@ -126,7 +168,8 @@ public class UIController : MonoBehaviour
 
         currentTask = 0;
         taskNumber.text = "Tasks Finished";
-        taskText.text = "Congratulations! You have successfully completed Level 1. Flip the book to the first page.";
+        taskText.text = "Congratulations! You have successfully completed Level " + 
+            (GameManager.instance.GetCurrentLevel() + 1)  + ". Flip the book to the first page.";
         startTaskButton.gameObject.SetActive(true);
         scratch.gameObject.SetActive(false);
         tasks.SetActive(true);
