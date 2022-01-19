@@ -74,8 +74,18 @@ public class UIController : MonoBehaviour
         Text wonderName = selectWonder.GetComponentInChildren<Text>();
         wonderName.text = currentBlip.name;
 
-        character.sprite = characters[GameManager.instance.GetCurrentLevel()];
-        characterInformation.sprite = characters[GameManager.instance.GetCurrentLevel()];
+        if (GameManager.instance.GetCurrentLevel() < 2)
+        {
+            character.gameObject.SetActive(true);
+            characterInformation.gameObject.SetActive(true);
+            character.sprite = characters[GameManager.instance.GetCurrentLevel()];
+            characterInformation.sprite = characters[GameManager.instance.GetCurrentLevel()];
+        }
+        else
+        {
+            character.gameObject.SetActive(false);
+            characterInformation.gameObject.SetActive(false);
+        }
     }
 
     public void OnSelectWonderButtonClicked()
